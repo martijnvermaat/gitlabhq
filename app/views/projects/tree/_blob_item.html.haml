@@ -1,6 +1,11 @@
 %tr{ class: "tree-item #{tree_hex_class(blob_item)}" }
   %td.tree-item-file-name
-    = tree_icon(type)
+    - if Gitlab.config.ipython_notebook.render && blob_item.name.downcase.end_with?('.ipynb')
+      = link_to '',
+          project_ipython_notebook_path(@project, tree_join(@id || @commit.id, blob_item.name)),
+          target: '_blank', class: 'fa fa-external-link'
+    - else
+      = tree_icon(type)
     %span.str-truncated
       = link_to blob_item.name, project_blob_path(@project, tree_join(@id || @commit.id, blob_item.name))
   %td.tree_time_ago.cgray

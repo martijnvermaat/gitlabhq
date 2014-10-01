@@ -214,6 +214,7 @@ Gitlab::Application.routes.draw do
         get :diff, on: :member
       end
       resources :raw,       only: [:show], constraints: {id: /.+/}
+      resources :ipython_notebook, only: [:show], constraints: {id: /.+/}
       resources :tree,      only: [:show], constraints: {id: /.+/, format: /(html|js)/ }
       resources :edit_tree, only: [:show, :update], constraints: { id: /.+/ }, path: 'edit' do
         # Cannot be GET to differentiate from GET paths that end in preview.

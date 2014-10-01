@@ -24,3 +24,7 @@
     %button.btn.btn-default.disabled.has_tooltip{title: "You can only edit files when you are on a branch.", data: {container: 'body'}} Edit
     %button.btn.btn-default.disabled.has_tooltip{title: "You can only replace files when you are on a branch.", data: {container: 'body'}} Replace
     %button.btn.btn-remove.disabled.has_tooltip{title: "You can only delete files when you are on a branch.", data: {container: 'body'}} Delete
+
+- if Gitlab.config.ipython_notebook.render && @blob.name.downcase.end_with?('.ipynb')
+  = link_to 'Preview', namespace_project_ipython_notebook_path(@project.namespace, @project, @id),
+      class: 'remove-blob btn btn-small btn-reopen', target: '_blank'

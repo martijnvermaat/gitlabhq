@@ -22,6 +22,10 @@
     = link_to 'Permalink', project_blob_path(@project,
         tree_join(@commit.sha, @path)), class: 'btn btn-small'
 
+- if Gitlab.config.ipython_notebook.render && @blob.name.downcase.end_with?('.ipynb')
+  = link_to 'View', project_ipython_notebook_path(@project, @id),
+      class: 'remove-blob btn btn-small btn-reopen', target: '_blank'
+
 - if allowed_tree_edit?
   = link_to '#modal-remove-blob', class: "remove-blob btn btn-small btn-remove", "data-toggle" => "modal" do
     Remove
